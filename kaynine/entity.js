@@ -8,7 +8,7 @@ function Entity(game, x, y) {
     this.xVel = 0;
 
     this.yPos = y;
-    this.xVel = 0;
+    this.yVel = 0;
 
     this.removeFromWorld = false;
 }
