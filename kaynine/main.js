@@ -24,7 +24,6 @@ function TempAnimation(game) {
 var tempArr = [0, this.idleRight, this.idleLeft, this.jumpRight, this.jumpLeft, this.fallingRight, this.fallingLeft, this.walkRight, this.walkLeft, this.wallClimbRight, this.wallClimbLeft, this.wallHangRight, this.wallHangLeft, this.wallJumpRight, this.wallJumpLeft];
 
     this.animArr = tempArr;
-console.log(this.animArr);
     this.time = new Date();
     this.curr = new Date();
     this.i = 1;
@@ -48,8 +47,6 @@ TempAnimation.prototype.draw = function (ctx) {
         this.i = this.i + 1;
         if(!(this.i < this.animArr.length)) { this.i = 1; }
     }
-
-console.log(this.curr - this.time);
 
     Entity.prototype.draw.call(this);
 }
