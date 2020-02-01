@@ -1,28 +1,26 @@
 function KayNine(game) {
 
     // Animations
-    this.idleRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_temp.png"), 0, 0, 128, 128, 0.2, 1, true, false);
-    this.idleLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_temp.png"), 0, 0, 128, 128, 0.2, 1, true, false);
+    this.idleRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_running_right.png"), 0, 0, 128, 128, 0.2, 1, true, false);
+    this.idleLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_running_left.png"), 0, 0, 128, 128, 0.2, 1, true, true);
 
-    this.jumpRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping.png"), 0, 0, 128, 128, 0.2, 1, true, false);
-    this.jumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping.png"), 0, 0, 128, 128, 0.2, 1, true, false);
+    this.jumpRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping_right.png"), 0, 0, 128, 128, 0.2, 8, true, false);
+    this.jumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping_left.png"), 0, 0, 128, 128, 0.2, 8, true, false);
 
-    this.fallingRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping.png"), 0, 0, 128, 128, 0.2, 1, true, false);
-    this.fallingLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping.png"), 0, 0, 128, 128, 0.2, 1, true, false);
+    this.fallingRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping_right.png"), 0, 0, 128, 128, 0.2, 1, true, false);
+    this.fallingLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping_left.png"), 0, 0, 128, 128, 0.2, 1, true, false);
 
-    this.walkRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_running_temp.png"), 0, 0, 128, 128, 0.2, 1, true, false);
-    this.walkLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_running_temp.png"), 0, 0, 128, 128, 0.2, 1, true, false);
+    this.walkRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_running_right.png"), 0, 0, 128, 128, 0.2, 4, true, false);
+    this.walkLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_running_left.png"), 0, 0, 128, 128, 0.2, 4, true, true);
 
-    this.wallClimbRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_climbing.png"), 0, 0, 128, 128, 0.2, 1, true, false);
-    this.wallClimbLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_climbing.png"), 0, 0, 128, 128, 0.2, 1, true, false);
+    this.wallClimbRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_climbing_right.png"), 0, 0, 128, 128, 0.2, 9, true, false);
+    this.wallClimbLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_climbing_left.png"), 0, 0, 128, 128, 0.2, 9, true, false);
 
-    this.wallHangRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_hang.png"), 0, 0, 128, 128, 0.2, 1, true, false);
-    this.wallHangLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_hang.png"), 0, 0, 128, 128, 0.2, 1, true, false);
+    this.wallHangRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_hanging_right.png"), 0, 0, 128, 128, 0.2, 8, true, false);
+    this.wallHangLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_hanging_left.png"), 0, 0, 128, 128, 0.2, 8, true, false);
 
-    this.wallJumpRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump.png"), 0, 0, 128, 128, 0.2, 1, true, false);
-    this.wallJumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump.png"), 0, 0, 128, 128, 0.2, 1, true, false);
-
-    //this.animArr[] = {this.idleRight, this.idleLeft, this.jumpRight, this.jumpLeft, this.fallingRight, this.fallingLeft, this.walkRight, this.walkLeft, this.wallClimbRight, this.wallClimbLeft, this.wallHangRight, this.wallHangLeft, this.wallJumpRight, this.wallJumpLeft};
+    this.wallJumpRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump_right.png"), 0, 0, 128, 128, 0.2, 5, true, false);
+    this.wallJumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump_left.png"), 0, 0, 128, 128, 0.2, 5, true, false);
 
     // Status
     this.jumpReq = false;
@@ -148,9 +146,11 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
         if(this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.yVel += this.yAccel; }
         if(this.game.keyDownList['s'] && !this.game.keyDownList['w']) { this.yVel -= this.yAccel; }
 
-        if(this.facingRight && this.game.keyDownList['space'])  { this.xVel = -this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
+        if(this.game.keyDownList['space'] && this.jumpREQ != true)  {
 
-        if(!this.facingRight && this.game.keyDownList['space']) { this.xVel = this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
+            if(this.facingRight) { this.xVel = -this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
+            else { this.xVel = this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
+        }
     }
 
     else {
@@ -203,14 +203,16 @@ KayNine.prototype.draw = function (ctx) {
 
     else if (this.onGround && this.facingRight && this.xVel != 0) { this.walkRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("walkRight"); }
     else if (this.onGround && !this.facingRight && this.xVel != 0) { this.walkLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("walkLeft"); }
+
     else if (this.onGround && this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("idleRight"); }
     else if (this.onGround && !this.facingRight) { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("idleLeft"); }
-    /*
+/*
     else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallClimbRight"); }
     else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallClimbLeft"); }
+
     else if (this.onWall && this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallHangRight"); }
     else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallHangLeft"); }
-    */
+*/
     else if (this.facingRight) { this.jumpRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("jumpRight"); }
     else                       { this.jumpLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("jumpLeft"); }
 
