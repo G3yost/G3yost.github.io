@@ -1,14 +1,17 @@
-function Entity(game, x, y) {
+function Entity(game, x, y, width, height, parent) {
     this.game = game;
 
     // Game world
     this.facingRight = true;
+    this.parent = parent;
 
     this.xPos = x;
     this.xVel = 0;
 
     this.yPos = y;
     this.yVel = 0;
+
+    this.boundingBox = new BoundingBox(x, y, width, height, parent);
 
     this.removeFromWorld = false;
 }
