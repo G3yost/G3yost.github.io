@@ -1,14 +1,40 @@
-var canvas = document.getElementById('gameWorld');
-var ctx = canvas.getContext('2d');
+window.onload = function() {
 
-var gameEngine = new GameEngine();
+    var canvas = document.getElementById('gameWorld');
+    var ctx = canvas.getContext('2d');
 
-for(var i = 0; i < 100; i++) {
-    for(var j = 0; j < 100; j++) {
+    var gameEngine = new GameEngine();
 
-        gameEngine.addEntity(new GridSquare(gameEngine, 0, 0));
+    ctx.canvas.width  = gameEngine.boardWidth * gameEngine.Qsize;
+    ctx.canvas.height = gameEngine.boardHeight * gameEngine.Qsize;
+
+    const squares = [];
+    for(i = 0; i < gameEngine.xDim; i++) {
+        squares[i] = [];
+        for(j = 0; j < gameEngine.yDim; j++) {
+            squares[i][j] = new GridSquare(gameEngine, i, j);
+        }
     }
-}
 
-gameEngine.init(ctx);
-gameEngine.start();
+    for(i = 0; i < gameEngine.xDim; i++) {
+        for(j = 0; j < gameEngine.yDim; j++) {
+
+            gameEngine.addEntity(squares[i][j]);
+        }
+    }
+
+    for(i = 0; i < gameEngine.xDim; i++) {
+        for(j = 0; j < gameEngine.yDim; j++) {
+
+            left   = i > 0 ? i - 1 : gameEngine.xDim - 1;
+            right  = i < gameEngine.xDim - 1 ? i + 1 : 0;
+            topp    = j > 0 ? j - 1 : gameEngine.yDim - 1;
+            bottom = j < gameEngine.yDim - 1 ? j + 1 : 0;
+
+            squares[i][j].addNeighbors(squares[topp][left], squares[topp][i], squares[topp][right], squares[left][j], squares[right][j], squares[bottom][left], squares[bottom][i], squares[bottom][right]);
+        }
+    }
+
+    gameEngine.init(ctx);
+    gameEngine.start();
+}

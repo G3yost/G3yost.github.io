@@ -14,7 +14,7 @@ window.requestAnimFrame = (function () {
 
 function Timer() {
     this.gameTime = 0;
-    this.maxStep = 0.05;
+    this.maxStep = 0.016; // 0.5
     this.wallLastTimestamp = 0;
 }
 
@@ -39,7 +39,14 @@ function GameEngine() {
     this.boardWidth = 100;
     this.boardHeight = 100;
 
-    this.Qsize = 10;
+    this.xDim = 10;
+    this.yDim = 10;
+
+    this.Qsize = 5;
+
+    this.lifeCycle = false;
+    this.lastCycle = 0;
+    this.lifeTime = 5;
 }
 
 GameEngine.prototype.init = function (ctx) {
@@ -63,7 +70,6 @@ GameEngine.prototype.start = function () {
 GameEngine.prototype.startInput = function () {
     console.log('starting input');
     var that = this;
-
 
     that.keyDownList['a'] = false;
     that.keyDownList['b'] = false;
@@ -142,6 +148,46 @@ GameEngine.prototype.startInput = function () {
     that.keyDownList['delete'] = false;
     that.keyDownList['backspace'] = false;
     that.keyDownList['enter'] = false;
+
+    that.keyDownList['lmb'] = null;
+    that.keyDownList['rmb'] = null;
+    that.keyDownList['pos'] = null;
+
+    that.mouse = new BoundingBox(-1, -1, 0, 0)
+
+    this.ctx.canvas.addEventListener("mousedown", function (e) {
+
+        if(e.button === 0) {
+
+            that.keyDownList['lmb'] = true;
+        } else if(e.button === 2) {
+
+            that.keyDownList['rmb'] = true;
+        }
+        e.preventDefault();
+    }, false);
+
+    this.ctx.canvas.addEventListener("mouseup", function (e) {
+
+        if(e.button === 0) {
+            that.keyDownList['lmb'] = false;
+        } else if(e.button === 2) {
+            that.keyDownList['rmb'] = false;
+        }
+        e.preventDefault();
+    }, false);
+
+    this.ctx.canvas.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+    }, false)
+
+    this.ctx.canvas.addEventListener("mousemove", function (e) {
+        that.mouse.update(e.clientX, e.clientY);
+    }, false);
+
+    this.ctx.canvas.addEventListener("mouseout", function (e) {
+        that.mouse.update(-1, -1);
+    }, false);
 
     this.ctx.canvas.addEventListener("keydown", function (e) {
 
@@ -232,7 +278,7 @@ GameEngine.prototype.startInput = function () {
 //        e.preventDefault();
     }, false);
 
-this.ctx.canvas.addEventListener("keyup", function (e) {
+        this.ctx.canvas.addEventListener("keyup", function (e) {
 
         switch(e.which || e.keyCode || 0) {
 
@@ -353,10 +399,14 @@ GameEngine.prototype.update = function () {
             this.entities.splice(i, 1);
         }
     }
+
+    document.getElementById("LifeTimer").textContent = Math.round(this.lifeTime - this.lastCycle);
 }
 
 GameEngine.prototype.loop = function () {
     this.clockTick = this.timer.tick();
+    this.lifeTime = document.getElementById("lifeTime").value;
+    if(this.lifeTime >= 0 && this.lastCycle > this.lifeTime) { this.lastCycle = 0; this.lifeCycle = true; } else { this.lifeCycle = false; this.lastCycle += this.clockTick; }
     this.update();
     this.draw();
     this.space = null;
