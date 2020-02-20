@@ -2,6 +2,8 @@ function GridSquare(game, x, y) {
 
     this.game = game;
 
+    this.count = 0;
+    this.wasAlive = false;
     this.isAlive = false;
 
     Entity.call(this, this.game, x * (this.game.boardWidth * this.game.Qsize) / this.game.xDim, y * (this.game.boardHeight * this.game.Qsize) / this.game.yDim, this.game.Qsize * this.game.boardWidth / this.game.xDim, this.game.Qsize * this.game.boardHeight / this.game.yDim);
@@ -12,16 +14,19 @@ GridSquare.prototype.constructor = GridSquare;
 
 GridSquare.prototype.update = function () {
 
-    count = 0;
+    this.wasAlive = this.isAlive;
 
     if(this.game.lifeCycle) {
-        for(i in this.touching) { if(this.touching[i].isAlive) { count += 1; } }
-if(count > 0) { console.log([this.boundingBox.left, this.boundingBox.top, count]); }
-        if(this.isAlive && (count === 2 || count === 3)) { // Any live cell with two or three neighbors survives.
+
+        this.count = 0;
+
+        for(i in this.touching) { if(this.touching[i].wasAlive) { this.count += 1; } }
+if(this.count > 0) { console.log([this.boundingBox.left, this.boundingBox.top, this.count]); }
+        if(this.isAlive && (this.count === 2 || this.count === 3)) { // Any live cell with two or three neighbors survives.
 
             this.isAlive = true;
 
-        } else if(!this.isAlive && count == 3) { // Any dead cell with three live neighbors becomes a live cell.
+        } else if(!this.isAlive && this.count == 3) { // Any dead cell with three live neighbors becomes a live cell.
 
             this.isAlive = true;
 
@@ -66,6 +71,12 @@ GridSquare.prototype.draw = function (ctx) {
     this.game.ctx.lineWidth = "2";
     this.game.ctx.strokeStyle = "#000000";
     this.game.ctx.strokeRect(this.boundingBox.left, this.boundingBox.top, this.boundingBox.width, this.boundingBox.height);
+
+/*
+print = "" + this.boundingBox.left + ", " + this.boundingBox.top + "  " + this.count;
+    this.game.ctx.fillStyle = "red";
+    this.game.ctx.font = "10px serif";
+    this.game.ctx.fillText(print, this.boundingBox.left + 5, this.boundingBox.top + 25, 40); */
 }
 
 GridSquare.prototype.addNeighbors = function(topLef, topCen, topRig, midLef, midRig, botLef, botCen, botRig) {
