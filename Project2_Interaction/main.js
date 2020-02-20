@@ -31,7 +31,7 @@ window.onload = function() {
             topp    = j > 0 ? j - 1 : gameEngine.yDim - 1;
             bottom = j < gameEngine.yDim - 1 ? j + 1 : 0;
 
-            squares[i][j].addNeighbors(squares[topp][left], squares[topp][i], squares[topp][right], squares[left][j], squares[right][j], squares[bottom][left], squares[bottom][i], squares[bottom][right]);
+            squares[i][j].addNeighbors(squares[left][topp], squares[i][topp], squares[right][topp], squares[left][j], squares[right][j], squares[left][bottom], squares[i][bottom], squares[right][bottom]);
         }
     }
 
