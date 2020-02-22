@@ -1,12 +1,12 @@
 // This game shell was happily copied from Googler Seth Ladd's "Bad Aliens" game and his Google IO talk in 2011
 
-window.requestAnimFrame = (function () {
+window.requestAnimFrame =(function() {
     return window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
             window.mozRequestAnimationFrame ||
             window.oRequestAnimationFrame ||
             window.msRequestAnimationFrame ||
-            function (/* function */ callback, /* DOMElement */ element) {
+            function(/* function */ callback, /* DOMElement */ element) {
                 window.setTimeout(callback, 1000 / 60);
             };
 })();
@@ -14,13 +14,13 @@ window.requestAnimFrame = (function () {
 
 function Timer() {
     this.gameTime = 0;
-    this.maxStep = 0.016; // 0.5
+    this.maxStep = 0.05;
     this.wallLastTimestamp = 0;
 }
 
-Timer.prototype.tick = function () {
+Timer.prototype.tick = function() {
     var wallCurrent = Date.now();
-    var wallDelta = (wallCurrent - this.wallLastTimestamp) / 1000;
+    var wallDelta =(wallCurrent - this.wallLastTimestamp) / 1000;
     this.wallLastTimestamp = wallCurrent;
 
     var gameDelta = Math.min(wallDelta, this.maxStep);
@@ -36,20 +36,16 @@ function GameEngine() {
     this.surfaceWidth = null;
     this.surfaceHeight = null;
 
-    this.boardWidth = 100;
-    this.boardHeight = 100;
+    this.groundFriction = 1;
+    this.wallFriction = 1;
+    this.airFriction = 0.1;
 
-    this.xDim = 20;
-    this.yDim = 20;
+    this.gravity = 0.5;
 
-    this.Qsize = 5;
-
-    this.lifeCycle = false;
-    this.lastCycle = 0;
-    this.lifeTime = 5;
+    this.isRunning = false
 }
 
-GameEngine.prototype.init = function (ctx) {
+GameEngine.prototype.init = function(ctx) {
     this.ctx = ctx;
     this.surfaceWidth = this.ctx.canvas.width;
     this.surfaceHeight = this.ctx.canvas.height;
@@ -58,18 +54,25 @@ GameEngine.prototype.init = function (ctx) {
     console.log('game initialized');
 }
 
-GameEngine.prototype.start = function () {
+GameEngine.prototype.start = function(/*callback,*/ level) {
     console.log("starting game");
+
     var that = this;
-    (function gameLoop() {
+
+    this.isRunning = true;
+
+   (function gameLoop() {
         that.loop();
         requestAnimFrame(gameLoop, that.ctx.canvas);
     })();
+
+    //callback();
 }
 
-GameEngine.prototype.startInput = function () {
+GameEngine.prototype.startInput = function() {
     console.log('starting input');
     var that = this;
+
 
     that.keyDownList['a'] = false;
     that.keyDownList['b'] = false;
@@ -149,47 +152,7 @@ GameEngine.prototype.startInput = function () {
     that.keyDownList['backspace'] = false;
     that.keyDownList['enter'] = false;
 
-    that.keyDownList['lmb'] = null;
-    that.keyDownList['rmb'] = null;
-    that.keyDownList['pos'] = null;
-
-    that.mouse = new BoundingBox(-1, -1, 0, 0)
-
-    this.ctx.canvas.addEventListener("mousedown", function (e) {
-
-        if(e.button === 0) {
-
-            that.keyDownList['lmb'] = true;
-        } else if(e.button === 2) {
-
-            that.keyDownList['rmb'] = true;
-        }
-        e.preventDefault();
-    }, false);
-
-    this.ctx.canvas.addEventListener("mouseup", function (e) {
-
-        if(e.button === 0) {
-            that.keyDownList['lmb'] = false;
-        } else if(e.button === 2) {
-            that.keyDownList['rmb'] = false;
-        }
-        e.preventDefault();
-    }, false);
-
-    this.ctx.canvas.addEventListener("contextmenu", function(e) {
-        e.preventDefault();
-    }, false)
-
-    this.ctx.canvas.addEventListener("mousemove", function (e) {
-        that.mouse.update(e.clientX, e.clientY);
-    }, false);
-
-    this.ctx.canvas.addEventListener("mouseout", function (e) {
-        that.mouse.update(-1, -1);
-    }, false);
-
-    this.ctx.canvas.addEventListener("keydown", function (e) {
+    this.ctx.canvas.addEventListener("keydown", function(e) {
 
         switch(e.which || e.keyCode || 0) {
 
@@ -274,11 +237,10 @@ GameEngine.prototype.startInput = function () {
             case 13 : that.keyDownList['enter'] = true; break;
         }
 
-        if (String.fromCharCode(e.which) === ' ') that.space = true;
-//        e.preventDefault();
+        e.preventDefault();
     }, false);
 
-        this.ctx.canvas.addEventListener("keyup", function (e) {
+this.ctx.canvas.addEventListener("keyup", function(e) {
 
         switch(e.which || e.keyCode || 0) {
 
@@ -369,45 +331,40 @@ GameEngine.prototype.startInput = function () {
     console.log('input started');
 }
 
-GameEngine.prototype.addEntity = function (entity) {
+GameEngine.prototype.addEntity = function(entity) {
     console.log('added entity');
     this.entities.push(entity);
 }
 
-GameEngine.prototype.draw = function () {
+GameEngine.prototype.draw = function() {
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.ctx.save();
-    for (var i = 0; i < this.entities.length; i++) {
+    for(var i = 0; i < this.entities.length; i++) {
         this.entities[i].draw(this.ctx);
     }
     this.ctx.restore();
 }
 
-GameEngine.prototype.update = function () {
+GameEngine.prototype.update = function() {
     var entitiesCount = this.entities.length;
 
-    for (var i = 0; i < entitiesCount; i++) {
+    for(var i = 0; i < entitiesCount; i++) {
         var entity = this.entities[i];
 
-        if (!entity.removeFromWorld) {
+        if(!entity.removeFromWorld) {
             entity.update();
         }
     }
 
-    for (var i = this.entities.length - 1; i >= 0; --i) {
-        if (this.entities[i].removeFromWorld) {
+    for(var i = this.entities.length - 1; i >= 0; --i) {
+        if(this.entities[i].removeFromWorld) {
             this.entities.splice(i, 1);
         }
     }
-
-    document.getElementById("LifeTimer").textContent = Math.round(this.lifeTime - this.lastCycle);
 }
 
-GameEngine.prototype.loop = function () {
+GameEngine.prototype.loop = function() {
     this.clockTick = this.timer.tick();
-    this.lifeTime = document.getElementById("lifeTime").value;
-    if(this.lifeTime >= 0 && this.lastCycle > this.lifeTime) { this.lastCycle = 0; this.lifeCycle = true; } else { this.lifeCycle = false; this.lastCycle += this.clockTick; }
     this.update();
     this.draw();
-    this.space = null;
 }

@@ -21,7 +21,7 @@ GridSquare.prototype.update = function () {
         this.count = 0;
 
         for(i in this.touching) { if(this.touching[i].wasAlive) { this.count += 1; } }
-if(this.count > 0) { console.log([this.boundingBox.left, this.boundingBox.top, this.count]); }
+
         if(this.isAlive && (this.count === 2 || this.count === 3)) { // Any live cell with two or three neighbors survives.
 
             this.isAlive = true;
@@ -80,10 +80,9 @@ print = "" + this.boundingBox.left + ", " + this.boundingBox.top + "  " + this.c
 }
 
 GridSquare.prototype.addNeighbors = function(topLef, topCen, topRig, midLef, midRig, botLef, botCen, botRig) {
-console.log("addNeighbors");
-console.log([topLef.isAlive, topCen.isAlive, topRig.isAlive, midLef.isAlive, midRig.isAlive, botLef.isAlive, botCen.isAlive, botRig.isAlive]);
+
+    console.log("addNeighbors");
     this.touching = [topLef, topCen, topRig, midLef, midRig, botLef, botCen, botRig];
-console.log(this.touching);
 }
 
 GridSquare.prototype.mouseOver = function() {
