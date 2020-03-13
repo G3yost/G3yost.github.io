@@ -3,9 +3,8 @@ function KayNine(game, xPos, yPos, camera) {
     this.type = "kaynine";
 
     // Animations
-    this.idleRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_running_right.png"), 0, 0, 128, 128, 0.2, 1, true, false);
-    this.idleLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_running_left.png"), 0, 0, 128, 128, 0.2, 1, true, true);
-
+    this.idleRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_right.png"), 0, 0, 128, 128, 0.075, 8, true, false);
+    this.idleLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_left.png"), 0, 0, 128, 128, 0.075, 8, true, true);
     this.jumpRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping_right.png"), 0, 0, 128, 128, 0.2, 8, true, false);
     this.jumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping_left.png"), 0, 0, 128, 128, 0.2, 8, true, false);
 
@@ -23,6 +22,8 @@ function KayNine(game, xPos, yPos, camera) {
 
     this.wallJumpRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump_right.png"), 0, 0, 128, 128, 0.2, 5, true, false);
     this.wallJumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump_left.png"), 0, 0, 128, 128, 0.2, 5, true, false);
+
+
 
     // Status
     this.jumpReq  = false;
@@ -59,19 +60,7 @@ KayNine.prototype.constructor = KayNine;
 
 KayNine.prototype.update = function () {
 
-    console.log(this.isDead);
-
-// // !!!!!!!! DELETE FOR REAL LEVELS
-// if(this.xPos > 800 || this.xPos < -200 || this.yPos > 800 || this.y < -200) {
-
-//     this.xPos = 100;
-//     this.yPos = 100;
-
-// } else { // REMOVE LAST BRACE
-// // !!!!!!!! DELETE FOR REAL LEVELS
-
 if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel); }
-
 
     if(this.isDead) {
 
@@ -140,14 +129,34 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
     } else if (this.onWall) { // Wall move set
 
-        this.yVel = 0;
         this.xVel = 0;
 
-        if(this.facingRight  && (!this.game.keyDownList['d'] || this.game.keyDownList['a'])) { this.xPos = this.xPos - 1; }
-        if(!this.facingRight && (!this.game.keyDownList['a'] || this.game.keyDownList['d'])) { this.xPos = this.xPos + 1; }
+        if(this.game.keyDownList['w'] && !this.game.keyDownList['s']) {
 
-        if(this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.yVel += this.yAccel; }
-        if(this.game.keyDownList['s'] && !this.game.keyDownList['w']) { this.yVel -= this.yAccel; }
+            this.yVel = this.yAccel;
+
+        } else if(!this.facingRight  && this.game.keyDownList['a']) {
+
+            this.yVel = 0;
+
+        } else if(this.facingRight && this.game.keyDownList['d']) {
+
+            this.yVel = 0;
+
+        } else {
+
+            this.yVel = -this.yAccel;
+        }
+
+
+        if(this.game.keyDownList['s'] && !(this.game.keyDownList['w'] || (!this.facingRight  && this.game.keyDownList['a']) || (this.facingRight && this.game.keyDownList['d']))) {
+
+            if(this.facingRight) {
+                this.xPos = this.xPos - 1;
+            } else {
+                this.xPos = this.xPos + 1;
+            }
+        }
 
         if(!this.game.keyDownList['space']) { this.jumpREQ = false; }
         if(this.game.keyDownList['space'] && !this.jumpREQ) {
@@ -157,6 +166,10 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
             this.jumpREQ = true;
         }
+
+
+
+
     } else {
 
         if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xVel -= this.xAccel * this.game.airFriction; }
@@ -210,7 +223,7 @@ console.log(groundCount);
                                     this.yVel = 0;
                                     this.onGround = true;
                                 }
-console.log(this.onGround);
+//console.log(this.onGround);
 /*
                                 if(!this.onWall || this.onGround === null) {
                                     this.yPos = entity.boundingBox.top - this.boundingBox.height;
@@ -244,16 +257,23 @@ console.log("wall");
                 break;
 
                 case "goal":
-                        //console.log("Victory");
-                        //this.game.isRunning = "victory";
-                        this.isDead = "Victory";
+                        //this.isDead = "Victory";
+                        this.game.isWin = true;
+                        this.removeFromWorld = true;
+                break;
+
+                case "lazer":
+                    this.removeFromWorld = true;
                 break;
 
                 case "spike":
-                        //console.log("Death");
-                        //this.game.isRunning = "death";
-                        this.isDead = "Dead";
+                        //this.isDead = "Dead";
+                    this.removeFromWorld = true;
                 break;
+				
+				case "vacuum":
+				this.removeFromWorld = true;
+				break;
 
                 default:
             }

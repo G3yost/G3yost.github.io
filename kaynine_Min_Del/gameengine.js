@@ -42,7 +42,10 @@ function GameEngine() {
 
     this.gravity = 0.5;
 
-    this.isRunning = false
+    this.isWin = false;
+
+    this.score = 500;
+    this.scoreTime = 0; // Seperate from the timer stuff
 }
 
 GameEngine.prototype.init = function(ctx) {
@@ -333,15 +336,28 @@ this.ctx.canvas.addEventListener("keyup", function(e) {
 
 GameEngine.prototype.addEntity = function(entity) {
     console.log('added entity');
+    //console.log(entity.type);
     this.entities.push(entity);
+}
+
+GameEngine.prototype.queueEntity = function(entity) {
+    console.log('queued entity');
+    this.entities.unshift(entity);
 }
 
 GameEngine.prototype.draw = function() {
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    this.ctx.beginPath();
     this.ctx.save();
     for(var i = 0; i < this.entities.length; i++) {
         this.entities[i].draw(this.ctx);
     }
+    this.ctx.font = "30px Arial";
+    this.ctx.fillStyle = 'white';
+    this.ctx.strokeStyle = 'black';
+    this.ctx.fillText("Score:" + this.score, 10,30);
+    this.ctx.strokeText("Score:" + this.score, 10,30);
+    this.ctx.stroke();
     this.ctx.restore();
 }
 
@@ -360,6 +376,12 @@ GameEngine.prototype.update = function() {
         if(this.entities[i].removeFromWorld) {
             this.entities.splice(i, 1);
         }
+    }
+
+    this.scoreTime += this.clockTick;
+    if(this.scoreTime > 1){
+        this.score--;
+        this.scoreTime = 0;
     }
 }
 

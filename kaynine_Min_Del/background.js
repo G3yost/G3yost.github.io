@@ -1,7 +1,9 @@
-function Background(game, spritesheet, camera) { // Will take any image and throw it into the background
-    Entity.call(this, game, 0, 0);
+function Background(game, spritesheet, xPosition, yPosition, camera) { // Will take any image and throw it into the background
+    Entity.call(this, game, xPosition, yPosition, 65, 65, this);
     this.spritesheet = spritesheet;
     this.camera = camera;
+
+    this.type = "background";
 }
 
 Background.prototype = new Entity();
@@ -11,8 +13,6 @@ Background.prototype.update = function () {
 }
 
 Background.prototype.draw = function (ctx) {
-    //ctx.fillStyle = "SaddleBrown";
-    //ctx.fillRect(0,500,800,300);
     ctx.drawImage(this.spritesheet, this.xPos - this.camera.xPos, this.yPos - this.camera.yPos);
     Entity.prototype.draw.call(this);
 }

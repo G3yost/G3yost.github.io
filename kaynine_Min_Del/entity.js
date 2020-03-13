@@ -1,3 +1,5 @@
+DRAW_HIT_BOXES = false;
+
 function Entity(game, x, y, width, height) {
     this.game = game;
 
@@ -21,7 +23,13 @@ Entity.prototype.update = function() {
 
 Entity.prototype.draw = function(ctx) {
 
-        // !! CHANGE TO SHOW BOUNDING BOX RATHER THAN ARC
+    if(DRAW_HIT_BOXES) {
+
+        this.game.ctx.strokeStyle = "green";
+        this.game.ctx.lineWidth = 2
+
+        this.game.ctx.rect(this.boundingBox.left - this.camera.xPos, this.boundingBox.top - this.camera.yPos, this.boundingBox.width, this.boundingBox.height);
+    }
 }
 
 Entity.prototype.rotateAndCache = function(image, angle) {

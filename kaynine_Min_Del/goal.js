@@ -16,6 +16,23 @@ Goal.prototype.constructor = Goal;
 
 Goal.prototype.update = function () {
 
+    for (const ent in this.game.entities) {
+
+        entity = this.game.entities[ent];
+        if(this != entity && entity.type != "camera" && entity.type != "background"){
+            if (this.boundingBox.collide(entity.boundingBox)) {
+                if(entity.type === "kaynine") { // need this to kill the dog
+                    entity.update();
+                }
+
+                console.log("Lazer has hit something");
+                console.log(entity.type);
+                //this.removeFromWorld = true; // having this will cause the crash of kaynine colliding with lazer
+                console.log(this.game.entities.length);
+            }
+        }
+    }
+
 }
 
 Goal.prototype.draw = function (ctx) {
