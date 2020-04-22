@@ -1,0 +1,409 @@
+/* Crimson : #981E32; */
+/* Grey    : #2a3033; */
+
+/* Pink    : #FF00DC; */
+/* Green   : #39FF14; */
+
+* { /*font-weight: normal;*/ font-family: consolas, monospace; color: white; background: #060606; }
+
+h3 {
+
+  font-weight: bold;
+  font-size: 3.0pc;
+  margin: 0.0pc;
+  margin-left: 2.0pc;
+  color: #981E32;
+  text-decoration-color: #981E32;
+}
+
+h5 {
+
+  font-weight: bold;
+  font-size: 1.5pc;
+  color: #981E32;
+  text-decoration-color: #2A3033;
+}
+
+p {
+
+  font-weight: normal;
+  text-align: justify;
+}
+
+strong {
+
+  color: #981E32;
+  font-weight: bold;
+}
+
+strong em {
+
+  color: #981E32;
+  font-weight: bold;
+}
+
+.clearFloat {
+
+  clear: both;
+}
+
+/* Index CSS */
+
+.header {
+
+  font-weight: bold;
+  max-width: 50pc;
+  min-height: 7.0pc;
+  padding: 0.0pc 2.0pc;
+  margin: auto;
+  margin-bottom: 2.0pc;
+}
+
+.contactLayout {
+
+  max-width: 30pc;
+  height: 9.5pc;
+  padding: 0.0pc 3.0pc;
+  margin: auto;
+  margin-top: 2.0pc;
+  margin-bottom: 1.5pc;
+}
+
+.contactLayout .listHeader {
+
+  font-size: 1.5pc;
+  text-align: center;
+  background-color: #303030;
+  padding: 0.5pc 0.0pc;
+  margin: 0.0pc;
+}
+
+.contactLayout .emailSection {
+
+  float: left;
+  width: 50%;
+  min-width: 15pc;
+  background-color: #404040;
+}
+
+.contactLayout .emailSection .emailHeader {
+
+  background-color: #404040;
+  text-align: center;
+  padding: 0.5pc;
+}
+
+.contactLayout .emailSection .emailPersonal {
+
+  background-color: #606060;
+  padding: 0.5pc;
+}
+
+.contactLayout .emailSection .emailPersonal a {
+
+  text-align: right;
+  background-color: #606060;
+  float: right;
+  padding-right: 0.5pc;
+}
+
+.contactLayout .emailSection .emailBusiness {
+
+  background-color: #505050;
+  padding: 0.5pc;
+}
+
+.contactLayout .emailSection .emailBusiness a {
+
+  text-align: right;
+  float: right;
+  padding-right: 0.5pc;
+  background-color: #505050;
+}
+
+.contactLayout .socialMediaSection {
+
+  float: left;
+  background-color: #606060;
+  }
+
+.contactLayout .socialMediaSection .socialMediaHeader {
+
+  text-align: center;
+  padding: 0.5pc;
+  background-color: #606060;
+}
+
+.contactLayout .socialMediaSection .socialMediaYoutube {
+
+  background-color: #808080;
+  padding: 0.5pc;
+}
+
+.contactLayout .socialMediaSection .socialMediaYoutube a {
+
+  background-color: #808080;
+  padding: 0.5pc;
+}
+
+.contactLayout .socialMediaSection .socialMediaTwitter {
+
+  background-color: #707070;
+  padding: 0.5pc;
+}
+
+.contactLayout .socialMediaSection .socialMediaTwitter a {
+
+  background-color: #707070;
+  padding: 0.5pc;
+}
+
+a .linkCard {
+
+  float: left;
+
+  margin-right: 1.0pc;
+
+  margin-top: 0.25pc;
+  margin-bottom: 0.25pc;
+  width: 20%;
+  min-width: 10pc;
+  max-width: 13pc;
+  filter: grayscale(100%);
+}
+
+a .linkCard:hover {
+
+  filter: grayscale(0%);
+  color: #2A3033;
+  text-decoration-color: #2A3033;
+}
+
+a .linkCard img {
+
+  width: 100%;
+  height: 75%;
+  background-color: #FF00DC;
+}
+
+a .linkCard .linkCardText {
+
+  text-align: center;
+  margin: 0.5pc;
+  color: #8d959a;
+  text-decoration-color: #8d959a;
+}
+
+/* Non Index Pages */
+#homeIcon {
+
+  height: 4.0pc;
+  width: 4.0pc;
+  float: right;
+  margin: 0.75pc 1.25pc;
+}
+
+/* Peoples CSS */
+
+.pageHeader {
+
+  height: 7.0pc;
+  width: 100%;
+}
+
+.pageHeader .pageTitle{
+
+  font-size: 3.0pc;
+  margin: 0.5pc 0.5pc 0.0pc 3.0pc;
+  float: left;
+}
+
+.pageHeader .spacer {
+
+  height: 4.0pc;
+}
+
+.pageHeader .pageDescription {
+
+  text-align: right;
+  max-width: 36pc;
+  width: 98%;
+  margin: 0.0pc;
+  margin-right: 0.5pc;
+  float: left;
+}
+
+footer {
+
+  width: 100%;
+  margin: 1.0pc 0.0pc;
+
+  border-top-style: solid;
+  border-color: #555555;
+  border-top-width: 0.25pc;
+}
+
+footer .notes {
+
+  font-weight: normal;
+  float: left;
+  margin: 1.0pc;
+  margin-right: 0.5pc;
+}
+
+footer .allPages {
+
+  float: right;
+  text-align: right;
+  margin: 1.0pc;
+  margin-left: 0.5pc;
+}
+
+.image {
+
+  background-color: #FF00DC;
+}
+
+.card {
+
+  width: 96%;
+  margin: auto;
+  margin-top: 0.25pc;
+  margin-bottom: 0.25pc;
+}
+
+.card .image {
+
+  object-fit: contain;
+  height: 12pc;
+  width: 16pc;
+  margin: 0.5pc;
+  float: left;
+}
+
+.card .description {
+
+  float: right;
+  margin: 0.5pc;
+}
+
+.card .description h4 {
+
+  font-size: 2.0pc;
+  color: #981F32;
+  margin: 0.125pc 0.0pc 0.125pc 2.0pc;
+}
+
+.card .description .first {
+
+  float: left;
+}
+
+.card .description .last {
+
+  float: left;
+}
+
+.card .description .date {
+
+  float: left;
+  color: #555555;
+}
+
+.card .description p {
+
+  margin: 0.125pc 0.0pc;
+}
+
+.linkedCardDivider {
+
+  text-decoration: none;
+}
+
+.cardDivider {
+
+  width: 100%;
+  min-height: 3.0pc;
+
+  border-top-style: solid;
+  border-top-width: 0.25pc;
+  border-bottom-style: solid;
+  border-bottom-width: 0.25pc;
+  border-color: #555555;
+
+  padding-top: 0.5pc;
+  padding-bottom: 0.5pc;
+  margin: 0.25pc 0.0pc;
+  margin-top: 0.25pc;
+  margin-bottom: 0.25pc;
+}
+
+.cardDivider h4 {
+
+  font-size: 2.5pc;
+  color: #981E32;
+  margin: 0.0pc;
+  margin-left: 6.0pc;
+}
+
+.cardSubDiveder {
+
+  font-size: 2.0pc;
+  color: #981E32;
+  margin: 0.5pc 7.0pc;
+}
+
+#mariners {
+
+  color: #FFCC00;
+}
+
+#huskies {
+
+  color: #B7A57A;
+}
+
+.historiesLeftSubHeader {
+
+  float: left;
+}
+
+.historiesRightSubHeader {
+
+  float: right;
+}
+
+.historiesImage {
+
+  object-fit: contain;
+  width: 20pc;
+}
+
+.historiesLeftImage {
+
+  float: left;
+  margin: 0.5pc 0.5pc 0.5pc 4.0pc;
+}
+
+.historiesRightImage {
+
+  float: right;
+  margin: 0.5pc 1.0pc 0.5pc 0.5pc;
+}
+
+.historiesParagraph {
+
+  margin: 0.5pc 0.5pc 0.5pc 4.0pc;
+}
+
+.historiesRightParagraph {
+
+  float: right;
+  margin: 0.5pc 1.0pc 0.5pc 0.5pc;
+}
+
+.historiesLeftParagraph {
+
+  float: left;
+  margin: 0.5pc 0.5pc 0.5pc 4.0pc;
+}
