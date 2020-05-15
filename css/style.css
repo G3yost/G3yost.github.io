@@ -9,9 +9,9 @@
 h3 {
 
   font-weight: bold;
-  font-size: 3.0pc;
-  margin: 0.0pc;
-  margin-left: 2.0pc;
+  font-size: 3.0em;
+  margin: 0.0em;
+  margin-left: 2.0em;
   color: #981E32;
   text-decoration-color: #981E32;
 }
@@ -19,7 +19,7 @@ h3 {
 h5 {
 
   font-weight: bold;
-  font-size: 1.5pc;
+  font-size: 1.5em;
   color: #981E32;
   text-decoration-color: #2A3033;
 }
@@ -52,37 +52,37 @@ strong em {
 .header {
 
   font-weight: bold;
-  max-width: 50pc;
-  min-height: 7.0pc;
-  padding: 0.0pc 2.0pc;
+  max-width: 50em;
+  min-height: 7.0em;
+  padding: 0.0em 2.0em;
   margin: auto;
-  margin-bottom: 2.0pc;
+  margin-bottom: 2.0em;
 }
 
 .contactLayout {
 
-  max-width: 30pc;
-  height: 9.5pc;
-  padding: 0.0pc 3.0pc;
+  max-width: 30em;
+  height: 9.5em;
+  padding: 0.0em 3.0em;
   margin: auto;
-  margin-top: 2.0pc;
-  margin-bottom: 1.5pc;
+  margin-top: 2.0em;
+  margin-bottom: 1.5em;
 }
 
 .contactLayout .listHeader {
 
-  font-size: 1.5pc;
+  font-size: 1.5em;
   text-align: center;
   background-color: #303030;
-  padding: 0.5pc 0.0pc;
-  margin: 0.0pc;
+  padding: 0.5em 0.0em;
+  margin: 0.0em;
 }
 
 .contactLayout .emailSection {
 
   float: left;
   width: 50%;
-  min-width: 15pc;
+  min-width: 15em;
   background-color: #404040;
 }
 
@@ -90,13 +90,13 @@ strong em {
 
   background-color: #404040;
   text-align: center;
-  padding: 0.5pc;
+  padding: 0.5em;
 }
 
 .contactLayout .emailSection .emailPersonal {
 
   background-color: #606060;
-  padding: 0.5pc;
+  padding: 0.5em;
 }
 
 .contactLayout .emailSection .emailPersonal a {
@@ -104,20 +104,20 @@ strong em {
   text-align: right;
   background-color: #606060;
   float: right;
-  padding-right: 0.5pc;
+  padding-right: 0.5em;
 }
 
 .contactLayout .emailSection .emailBusiness {
 
   background-color: #505050;
-  padding: 0.5pc;
+  padding: 0.5em;
 }
 
 .contactLayout .emailSection .emailBusiness a {
 
   text-align: right;
   float: right;
-  padding-right: 0.5pc;
+  padding-right: 0.5em;
   background-color: #505050;
 }
 
@@ -130,45 +130,45 @@ strong em {
 .contactLayout .socialMediaSection .socialMediaHeader {
 
   text-align: center;
-  padding: 0.5pc;
+  padding: 0.5em;
   background-color: #606060;
 }
 
 .contactLayout .socialMediaSection .socialMediaYoutube {
 
   background-color: #808080;
-  padding: 0.5pc;
+  padding: 0.5em;
 }
 
 .contactLayout .socialMediaSection .socialMediaYoutube a {
 
   background-color: #808080;
-  padding: 0.5pc;
+  padding: 0.5em;
 }
 
 .contactLayout .socialMediaSection .socialMediaTwitter {
 
   background-color: #707070;
-  padding: 0.5pc;
+  padding: 0.5em;
 }
 
 .contactLayout .socialMediaSection .socialMediaTwitter a {
 
   background-color: #707070;
-  padding: 0.5pc;
+  padding: 0.5em;
 }
 
 a .linkCard {
 
   float: left;
 
-  margin-right: 1.0pc;
+  margin-right: 1.0em;
 
-  margin-top: 0.25pc;
-  margin-bottom: 0.25pc;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
   width: 20%;
-  min-width: 10pc;
-  max-width: 13pc;
+  min-width: 10em;
+  max-width: 13em;
   filter: grayscale(100%);
 }
 
@@ -189,7 +189,7 @@ a .linkCard img {
 a .linkCard .linkCardText {
 
   text-align: center;
-  margin: 0.5pc;
+  margin: 0.5em;
   color: #8d959a;
   text-decoration-color: #8d959a;
 }
@@ -197,66 +197,66 @@ a .linkCard .linkCardText {
 /* Non Index Pages */
 #homeIcon {
 
-  height: 4.0pc;
-  width: 4.0pc;
+  height: 4.0em;
+  width: 4.0em;
   float: right;
-  margin: 0.75pc 1.25pc;
+  margin: 0.75em 1.25em;
 }
 
 /* Peoples CSS */
 
 .pageHeader {
 
-  height: 7.0pc;
+  height: 7.0em;
   width: 100%;
 }
 
 .pageHeader .pageTitle{
 
-  font-size: 3.0pc;
-  margin: 0.5pc 0.5pc 0.0pc 3.0pc;
+  font-size: 3.0em;
+  margin: 0.5em 0.5em 0.0em 3.0em;
   float: left;
 }
 
 .pageHeader .spacer {
 
-  height: 4.0pc;
+  height: 4.0em;
 }
 
 .pageHeader .pageDescription {
 
   text-align: right;
-  max-width: 36pc;
+  max-width: 36em;
   width: 98%;
-  margin: 0.0pc;
-  margin-right: 0.5pc;
+  margin: 0.0em;
+  margin-right: 0.5em;
   float: left;
 }
 
 footer {
 
   width: 100%;
-  margin: 1.0pc 0.0pc;
+  margin: 1.0em 0.0em;
 
   border-top-style: solid;
   border-color: #555555;
-  border-top-width: 0.25pc;
+  border-top-width: 0.25em;
 }
 
 footer .notes {
 
   font-weight: normal;
   float: left;
-  margin: 1.0pc;
-  margin-right: 0.5pc;
+  margin: 1.0em;
+  margin-right: 0.5em;
 }
 
 footer .allPages {
 
   float: right;
   text-align: right;
-  margin: 1.0pc;
-  margin-left: 0.5pc;
+  margin: 1.0em;
+  margin-left: 0.5em;
 }
 
 .image {
@@ -268,30 +268,30 @@ footer .allPages {
 
   width: 96%;
   margin: auto;
-  margin-top: 0.25pc;
-  margin-bottom: 0.25pc;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
 }
 
 .card .image {
 
   object-fit: contain;
-  height: 12pc;
-  width: 16pc;
-  margin: 0.5pc;
+  height: 12em;
+  width: 16em;
+  margin: 0.5em;
   float: left;
 }
 
 .card .description {
 
   float: right;
-  margin: 0.5pc;
+  margin: 0.5em;
 }
 
 .card .description h4 {
 
-  font-size: 2.0pc;
+  font-size: 2.0em;
   color: #981F32;
-  margin: 0.125pc 0.0pc 0.125pc 2.0pc;
+  margin: 0.125em 0.0em 0.125em 2.0em;
 }
 
 .card .description .first {
@@ -312,7 +312,7 @@ footer .allPages {
 
 .card .description p {
 
-  margin: 0.125pc 0.0pc;
+  margin: 0.125em 0.0em;
 }
 
 .linkedCardDivider {
@@ -323,34 +323,34 @@ footer .allPages {
 .cardDivider {
 
   width: 100%;
-  min-height: 3.0pc;
+  min-height: 3.0em;
 
   border-top-style: solid;
-  border-top-width: 0.25pc;
+  border-top-width: 0.25em;
   border-bottom-style: solid;
-  border-bottom-width: 0.25pc;
+  border-bottom-width: 0.25em;
   border-color: #555555;
 
-  padding-top: 0.5pc;
-  padding-bottom: 0.5pc;
-  margin: 0.25pc 0.0pc;
-  margin-top: 0.25pc;
-  margin-bottom: 0.25pc;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin: 0.25em 0.0em;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
 }
 
 .cardDivider h4 {
 
-  font-size: 2.5pc;
+  font-size: 2.5em;
   color: #981E32;
-  margin: 0.0pc;
-  margin-left: 6.0pc;
+  margin: 0.0em;
+  margin-left: 6.0em;
 }
 
 .cardSubDiveder {
 
-  font-size: 2.0pc;
+  font-size: 2.0em;
   color: #981E32;
-  margin: 0.5pc 7.0pc;
+  margin: 0.5em 7.0em;
 }
 
 #mariners {
@@ -376,34 +376,34 @@ footer .allPages {
 .historiesImage {
 
   object-fit: contain;
-  width: 20pc;
+  width: 20em;
 }
 
 .historiesLeftImage {
 
   float: left;
-  margin: 0.5pc 0.5pc 0.5pc 4.0pc;
+  margin: 0.5em 0.5em 0.5em 4.0em;
 }
 
 .historiesRightImage {
 
   float: right;
-  margin: 0.5pc 1.0pc 0.5pc 0.5pc;
+  margin: 0.5em 1.0em 0.5em 0.5em;
 }
 
 .historiesParagraph {
 
-  margin: 0.5pc 0.5pc 0.5pc 4.0pc;
+  margin: 0.5em 0.5em 0.5em 4.0em;
 }
 
 .historiesRightParagraph {
 
   float: right;
-  margin: 0.5pc 1.0pc 0.5pc 0.5pc;
+  margin: 0.5em 1.0em 0.5em 0.5em;
 }
 
 .historiesLeftParagraph {
 
   float: left;
-  margin: 0.5pc 0.5pc 0.5pc 4.0pc;
+  margin: 0.5em 0.5em 0.5em 4.0em;
 }
