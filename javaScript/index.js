@@ -4,9 +4,6 @@ function drawingFunction() {
 
 /* Contact Table Start */
 
-    const table = document.querySelector(".contactLayout");
-
-
     const tableWidth = document.querySelector(".listHeader").offsetWidth;
     const emailWidth = document.querySelector(".emailSection").offsetWidth;
     const socialMedia = document.querySelector(".socialMediaSection");

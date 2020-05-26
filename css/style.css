@@ -61,12 +61,14 @@ strong em {
 
 .contactLayout {
 
-  max-width: 30em;
+  max-width: 35em;
+  min-width: 29em;
   height: 9.5em;
   padding: 0.0em 3.0em;
   margin: auto;
   margin-top: 2.0em;
   margin-bottom: 1.5em;
+  font-size: 1.0em;
 }
 
 .contactLayout .listHeader {
@@ -124,6 +126,8 @@ strong em {
 .contactLayout .socialMediaSection {
 
   float: left;
+  width: 50%;
+  min-width: 14em;
   background-color: #606060;
   }
 
@@ -146,13 +150,13 @@ strong em {
   padding: 0.5em;
 }
 
-.contactLayout .socialMediaSection .socialMediaTwitter {
+.contactLayout .socialMediaSection .socialMediaDiscord {
 
   background-color: #707070;
   padding: 0.5em;
 }
 
-.contactLayout .socialMediaSection .socialMediaTwitter a {
+.contactLayout .socialMediaSection .socialMediaDiscord a {
 
   background-color: #707070;
   padding: 0.5em;
